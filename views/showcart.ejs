@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="style.css">
+
+<body>
+
+    <div class="header">
+        <h1 class="welcome">Welcome <%=username%>!!!</h1>
+            <form class="logout" method = "post" action="/logout">
+                <button class="logout" type="submit" id="Logout" >Logout User</button>
+            </form>
+            <form class="logout" method = "get" action="/changepassword">
+                <button class="logout" type="submit" id="logout" >Change Password</button>
+            </form>
+            <form class="logout" method = "get" action="/">
+                <button class="logout" type="submit" id="logout" >Back-To Home</button>
+            </form>
+    </div>
+    <% var sum =0 %>
+        <% cart.forEach(function(pair){ %>
+        <div class="card">
+            <img class="img" src="/images/<%=pair.image%>" style="width:100%">
+            <h1><%=cart.name%></h1>
+            <p class="price">₹ <%=pair.price%></p>
+            <% sum = sum + (pair.price)*(pair.quantity) %>
+            <form method="post" action = "/delete-product">
+            <input type ="hidden" name ="username" value = "<%=username%>">
+            <input type="hidden" name="productname" value="<%=pair.productname%>">
+            <input type="hidden" name="product_id" value="<%=pair.product_id%>">
+            <input type="hidden" name="image" value="<%=pair.image%>">
+            <input type="hidden" name="price" value="<%=pair.price%>">
+            <input type="hidden" name="quantity" value="<%=pair.quantity%>">
+            <button type="submit" style="color : white" id="Delete" class = "button">Delete</button>
+            </form>
+            <div id="inline">
+            <button  style="color:white">Quantity : <%=pair.quantity%></button>
+            </div>
+    <% }) %>
+    </div>
+    <br>
+</body>
+<ul>
+ <p id ="total" > Total Cart Price = ₹ <%=sum%> </p>
+</ul>
+   
+
+<script src="script.js"> </script>
+    
